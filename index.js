@@ -4,7 +4,15 @@ const fs = require('fs');
 
 //Handles HTTP requests
 const requestHandler = (request, response) => {
-    response.end(`Handling a request on port ${port}`)
+
+    //Create a file and write content to it
+    fs.writeFile('hello-world.txt', 'Hello to this great world', 'utf8',(err) =>{
+        if (err) throw err; 
+
+        console.log('success')
+     });
+
+ response.end(`Handling a request on port ${port}`)
 };
 
 //Create a server and pass in the requestHandler function
@@ -19,8 +27,3 @@ server.listen(port, (err) =>{
     console.log(`server is listening on ${port}`);
 });
 
-//Create a file and write content to it
-fs.writeFile('hello-world.txt', 'Hello to this great world', 'utf8',(err) =>{
-    if (err) throw err;
-    console.log('success')
-});
